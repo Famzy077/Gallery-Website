@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav2{
+    width: 100%;
+    display: none;
+    position: absolute;
+    margin-top: 28px;
+    left: 0;
+    color: black;
+    
+}
+@media screen and (width <= 500px){
+    nav{
+        display: none;
+    }
+    .nav2{
+        display: block;
+    }
+}
