@@ -2,19 +2,28 @@
 const { configDotenv } = require('dotenv');
 const express = require('express');
 const path = require('path')
+const cors = require('cors')
+const mysql = require('mysql')
+const multer = require('multer')
+
 const app = express();
-app.use(express.static(path.join(__dirname, 'Public')));
 configDotenv()
 const Port = process.env.PORT
 
 try {
-    app.get('/home', (req, res) => {
-        res.send(path.join(__dirname, 'home.html', 'Public'))
-    })
+    app.use(express.json());
+    app.use(cors());
 } catch (error) {
     console.log(error)
 }
-// const Port = 4000
+
+const db  = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: ''
+})
+
 app.listen(Port, () => {
     console.log(`App running on Port ${Port}`)
 })

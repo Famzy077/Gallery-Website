@@ -40,23 +40,14 @@ const Data: {id?: number, pics?: string, title?: string}[] = [
 // console.log(Data)
 const Gallery_Data = () => {
 
-  const [uploads, setUploads] = useState('')
-  const [errorMSG, SetErrorMSG] = useState('')
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const formUpload = 
-    Axios.post('./http://localhost:4000', {
-      uploads
-    }).this(index => {
-      if(index.data.status){
-        window.location.href = '/'
-      }
-      else{
-        SetErrorMSG('An error occur please try again later')
-      }
-    }).catch((error) => console.log(error))
-  }
+  const [files, setFiles] = useState()
+  // const [errorMSG, SetErrorMSG] = useState('')
+  const handleUpload = () => {
 
+  }
+  const handleFile = (e) => {
+      setFiles(e.target.files[0])
+  }
   return (
     <div>
         <main>
@@ -73,13 +64,12 @@ const Gallery_Data = () => {
                 </div>
               )}
             </section>
-            <form action="/" className="h-[400px] place-content-center text-center shadow-2xl border-gray-300" method="post" onSubmit={handleSubmit}>
-              <label htmlFor="Uploads">Uploads Image <br />
-                <input name="file"  onChange={((index) => setUploads(index.target.value))} type="file" />
-              </label>
-              <button className="border-2 shadow-xl rounded-xl p-2 border-blue-900" type="submit">Upload Image</button>
-              <p className="text-red-700">{errorMSG}</p>
-            </form>
+            <div>
+              <h2>Uploads amazing car image</h2>
+                  <input name="file"  onChange={handleFile} type="file" />
+                <button className="border-2 shadow-xl rounded-xl p-2 border-blue-900" onClick={handleUpload}>Upload Image</button>
+                {/* <p className="text-red-700">{errorMSG}</p> */}
+            </div>
         </main>
     </div>
   )
